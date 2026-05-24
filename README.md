@@ -77,4 +77,3 @@ uvicorn app:app --host 0.0.0.0 --port 5000
 - [x] YOLOv11 integration
 - [ ] Enhanced real-time tracking performance
 - [ ] Improved FastAPI streaming optimization
-- [ ] Web UI dashboard for monitoring
