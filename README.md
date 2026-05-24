@@ -1,58 +1,80 @@
 ![Preview](./preview.png)
-📷 SMART FACE DETECTOR SYSTEM
 
-a high performance computer vision pipeline design to detect a person, track  with a real_time integrated fast_api for remote control
+# 📷 SMART FACE DETECTOR SYSTEM
 
-KEY FEATURES
+A high-performance computer vision pipeline designed to detect and track faces in real-time with an integrated FastAPI server for remote control and monitoring.
 
-Object Detection: powered by YOLOv11 for state of art accuracy
+## ✨ Key Features
 
-Multi-Object Tracking: uses byte track to maintain vehicles id across frame
+- **Object Detection**: Powered by YOLOv11 for state-of-the-art accuracy
+- **Multi-Object Tracking**: Uses ByteTrack to maintain consistent face IDs across frames
+- **Real-Time Streaming**: Live annotated MJPEG video stream via FastAPI
+- **Remote Control**: API endpoints for monitoring and system status
 
-video input : 
+## 🛠 Tech Stack
 
-tech stack
- Tech Stack
- Component Technology Language Python
- 3.9+ InferenceUltralytics YOLOv11Logic
- GeometrySupervision(by roboflow)Api
- Framwork FastAPI & uvicornimage Processing OpenCV
+| Component                | Technology                |
+| ------------------------ | ------------------------- |
+| **Language**             | Python 3.9+               |
+| **Detection**            | Ultralytics YOLOv11       |
+| **Tracking**             | ByteTrack                 |
+| **Geometry & Utilities** | Supervision (by Roboflow) |
+| **API Framework**        | FastAPI & Uvicorn         |
+| **Image Processing**     | OpenCV                    |
 
- 🚀 Getting Started
+## 🚀 Getting Started
 
- 1 Installation
+### 1. Installation
 
-Bash
+```bash
+# Clone the repository
+git clone <repository-url>
 
-# Clone the repository git Clone
+# Install dependencies
+pip install -r requirements.txt
+```
 
-#install dependencies
-pip install -r requirement.txt
+### 2. Configuration
 
-2 configuration
-open main.py and set video source
-webcam: cap = cv2.videoCapture(0)
-video File = cap = cv2.videocapture('walkway.mp4')
+Edit `app.py` to set your video source:
 
-3
-running the api
+```python
+# For webcam:
+cap = cv2.VideoCapture(0)
 
-uvicorn.run(app, host= 0.0.0.0, port= 5000)
+# For video file:
+cap = cv2.VideoCapture('walkway.mp4')
+```
 
-Api Endpoints
+### 3. Running the API
 
-/detect = getlive annonated mjpeg video stream
-/status = returns the status of the streaming
+```bash
+python app.py
+```
 
-lologic visualization
-the system detects human faces and starts tracking
-class Filtering
-the system is strictly configured to track  only faces of a person
+Or manually run with uvicorn:
 
-🏄‍♂️Road map
- yolov11 integration
- real time tracking
- fast api streaming
+```bash
+uvicorn app:app --host 0.0.0.0 --port 5000
+```
 
+## 📡 API Endpoints
 
+| Endpoint  | Method | Description                          |
+| --------- | ------ | ------------------------------------ |
+| `/detect` | GET    | Live annotated MJPEG video stream    |
+| `/status` | GET    | Returns the current streaming status |
 
+## 🔍 How It Works
+
+1. The system detects human faces in each frame using YOLOv11
+2. Detected faces are tracked across frames using ByteTrack to maintain consistent IDs
+3. The system is strictly configured to track only human faces
+4. Annotated video with bounding boxes and tracking IDs is streamed in real-time
+
+## 🗺 Roadmap
+
+- [x] YOLOv11 integration
+- [ ] Enhanced real-time tracking performance
+- [ ] Improved FastAPI streaming optimization
+- [ ] Web UI dashboard for monitoring
